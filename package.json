@@ -1,0 +1,16 @@
+{
+  "name": "nonliner_game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ibrahim Ayoob <ibrayo1128@gmail.com> (https://github.com/ibrayo1/CS494-UI.git)",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.0.2",
+    "express": "^4.17.1"
+  }
+}
