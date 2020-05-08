@@ -3,7 +3,7 @@ let cnv;
 let clickable = true;
 
 // variable stores which scene player is at
-let scene = 0;
+let scene = 2;
 let current = 0;
 
 // characters
@@ -17,13 +17,17 @@ let shadow;
 let bruh_sfx;
 let forest_bgm;
 let haunted_forest_bgm;
-let nani;
+let dragon_bgm;
 let counter = 0;
 
 // images
 let bg1;
 let bg2;
 let bg3;
+let bg4;
+let bg4_2;
+let ending1bg;
+let dragon_breath;
 let fall;
 
 function preload(){
@@ -31,7 +35,7 @@ function preload(){
     bruh_sfx = loadSound("../assets/bruh_sfx.mp3");
     forest_bgm = loadSound("../assets/forest_bgm.mp3");
     haunted_forest_bgm = loadSound("../assets/haunted_forest_bgm.mp3");
-    nani = loadSound("../assets/nani.mp3");
+    dragon_bgm = loadSound("../assets/dragon_bgm.mp3");
 
     // player
     player = loadImage("../assets/slime.png");
@@ -48,7 +52,11 @@ function preload(){
     bg1 = loadImage("../assets/bg1.jpg");
     bg2 = loadImage("../assets/bg2.png");
     bg3 = loadImage("../assets/bg3.jpg");
+    bg4 = loadImage("../assets/bg4.jpg");
+    bg4_2 = loadImage("../assets/bg4-2.png");
     fall = loadImage("../assets/falling.gif");
+    dragon_breath = loadImage("../assets/dragon_breath.gif");
+    ending1bg = loadImage("../assets/ending_1.jpg");
 }
 
 function setup(){
@@ -57,6 +65,7 @@ function setup(){
 
     forest_bgm.setVolume(0.2);
     haunted_forest_bgm.setVolume(0.2);
+    dragon_bgm.setVolume(0.2);
 }
 
 function draw(){
@@ -79,10 +88,73 @@ function draw(){
     if ( scene == 3 ){
         fourthScene();
     } 
+
+    if ( scene == 5 ){
+        ending1Scene();
+    }
+}
+
+// this is an ending scene
+function ending1Scene(){
+    if(current == 0){
+        image(ending1bg, 0, -225);
+        image(player, 200, 350);
+        text('You continue to wander through and out the forest somehow arriving at a', 120, 530);
+        text('desert. You wander for what seems to be eons', 120, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 1){
+        image(ending1bg, 0, -225);
+        image(player, 200, 350);
+        text('Without the cube of death your soul was forced to wander throughout the', 120, 530);
+        text('desert for all of eternity. You tried to go back and find the forest', 120, 555);
+        text('but you never managed to find the forest ever again', 120, 580);
+        text('Probably should\'ve taken the cube of death...', 120, 630);
+        text('press \'r\' to restart the game', 810, 725);
+    }
 }
 
 function fourthScene(){
-    
+    if(current == 0){
+        text('You got knocked out when your head hits the hard ground.', 120, 530);
+        text('After an amount of time you find yourself slowly waking up.', 120, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 1){
+        playDragonBGM();
+        image(bg4, 0, -50);
+        image(player, 200, 371);
+        text('You find yourself wakup to -HOLY *&@Y#!!!!!', 120, 540);
+        text('IS THAT A DRAGON?!?!, WHAT IS THIS SHYT?', 120, 565);
+        text('THAT TIME I GOT REINCARNATED AS A SLIME?!?!!!', 120, 590);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 2){
+        image(bg4, 0, -50);
+        image(player, 150, 371);
+        text('Okay. okay. don\'t make a sound, just back away slowly-', 120, 540);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 3){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        text('...', 120, 540);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 4){
+        clickable = false;
+        image(bg4_2, 0, -50);
+        image(dragon_breath, 50, 50);
+        image(player, 150, 371);
+        text('AAAAHH!', 120, 540);
+        text('click to continue', 810, 725);
+    }
+
 }
 
 function thirdScene(){
@@ -124,8 +196,8 @@ function thirdScene(){
         image(bg3, 0, -225);
         image(player, 200, 350);
         image(shadow, 500, 150);
-        text('Would you like for me to give you the cube of death? Would you like', 120, 530);
-        text('for me to give you the cube of death?', 120, 555);
+        text('Would you like for me to give you the cube of death?', 120, 530);
+        text('Would you like for me to give you the cube of death?', 120, 555);
         text('click to continue', 810, 725);
     }
 
@@ -140,14 +212,21 @@ function thirdScene(){
 
     if(current == 6){
         image(bg3, 0, -225);
-        image(player, 200, 350);
         image(shadow, 500, 150);
-        text('Would you like for me to give you the cube of death? Would you like', 120, 530);
-        text('for me to give you the cube of death?', 120, 555);
-        text('click to continue', 810, 725);
+        image(player, 200, 350);
+        text('...', 120, 530);
     }
 
     if(current == 7){
+        image(bg3, 0, -225);
+        image(player, 200, 350);
+        image(shadow, 500, 150);
+        text('Would you like for me to give you the cube of death?', 120, 530);
+        text('Would you like for me to give you the cube of death?', 120, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 8){
         image(bg3, 0, -225);
         image(player, 200, 350);
         image(shadow, 500, 150);
@@ -156,7 +235,7 @@ function thirdScene(){
         text('click to continue', 810, 725);
     }
 
-    if(current == 8){
+    if(current == 9){
         image(bg3, 0, -225);
         image(player, 200, 350);
         clickable = false;
@@ -166,25 +245,25 @@ function thirdScene(){
         text('(c) turn the other way and run', 320, 685);
     }
 
-    if(current == 9){
+    if(current == 10){
         image(bg3, 0, -225);
         image(player, 200, 350);
+        clickable = false;
         text('When you decide to take cube of death from the shadow your soul ends', 120, 530);
         text('up getting engulfed in the shadows of death.', 120, 555);
         text('You died.', 120, 580);
         text('press \'r\' to restart the game', 810, 725);
     }
 
-    if(current == 10){
-        image(bg3, 0, -225);
-        image(player, 200, 350);
-        text('Without the cube of death your soul was forced to wander throughout the', 120, 530);
-        text('forest for all of eternity. You tried to go back to find the shadow', 120, 555);
-        text('to retrieve the cube of death but you never managed to find him ever again', 120, 580);
-        text('press \'r\' to restart the game', 810, 725);
+    if(current == 11){
+        scene = 5;
+        current = 0;
+        counter = 0;
+        clickable = true;
+        if(haunted_forest_bgm.isPlaying()){haunted_forest_bgm.stop();}
     }
 
-    if(current == 11){
+    if(current == 12){
         image(fall, 250, 100);
         clickable = true;
         text('You turn around and begin to run towards the place you entered the', 120, 530);
@@ -193,7 +272,7 @@ function thirdScene(){
         text('click to continue', 810, 725);
     }
 
-    if(current == 12){
+    if(current == 13){
         scene = 3;
         current = 0;
         counter = 0;
@@ -232,7 +311,7 @@ function secondScene(){
         text('This feeling of being watched comes further within the forest', 120, 530);
         textStyle(BOLDITALIC);
         text('(a) go further', 120, 600);
-        text('(b) run away like a coward', 120, 650);
+        text('(b) run away like a wuss', 120, 650);
         textStyle(NORMAL);
     }
 
@@ -471,6 +550,9 @@ function keyPressed(){
         if(haunted_forest_bgm.isPlaying()){
             haunted_forest_bgm.stop();
         }
+        if(dragon_bgm.isPlaying()){
+            dragon_bgm.stop();
+        }
     }
 }
 
@@ -497,6 +579,13 @@ function playHauntedForestBGM(){
 function playForestBGM(){
     if(counter == 0){
         forest_bgm.play();
+        counter++;
+    }
+}
+
+function playDragonBGM(){
+    if(counter == 0){
+        dragon_bgm.play();
         counter++;
     }
 }
