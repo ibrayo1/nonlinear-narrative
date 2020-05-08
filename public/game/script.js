@@ -3,7 +3,7 @@ let cnv;
 let clickable = true;
 
 // variable stores which scene player is at
-let scene = 2;
+let scene = 0;
 let current = 0;
 
 // characters
@@ -107,6 +107,7 @@ function ending1Scene(){
     if(current == 1){
         image(ending1bg, 0, -225);
         image(player, 200, 350);
+        clickable = false;
         text('Without the cube of death your soul was forced to wander throughout the', 120, 530);
         text('desert for all of eternity. You tried to go back and find the forest', 120, 555);
         text('but you never managed to find the forest ever again', 120, 580);
