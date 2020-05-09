@@ -12,7 +12,9 @@ let pierre_face;
 let player;
 let player_face;
 let shadow;
+let dragon;
 let dragon_face;
+let dragon_face_2;
 let dragon_fly;
 
 // sound effects
@@ -31,9 +33,12 @@ let bg4;
 let bg4_2;
 let bg4_3;
 let bg5;
+let bg6;
 let ending1bg;
+let portal;
 let dragon_breath;
 let fall;
+let warp;
 
 function preload(){
     // sound effect
@@ -55,8 +60,10 @@ function preload(){
     shadow = loadImage("../assets/shadow.gif");
 
     //dragon
+    dragon = loadImage("../assets/dragon.png");
     dragon_face = loadImage("../assets/dragon_face.png");
     dragon_fly = loadImage("../assets/dragon_fly.png");
+    dragon_face_2 = loadImage("../assets/dragon_face_2.png");
 
     // bg 1
     bg1 = loadImage("../assets/bg1.jpg");
@@ -66,7 +73,10 @@ function preload(){
     bg4_2 = loadImage("../assets/bg4-2.png");
     bg4_3 = loadImage("../assets/bg4-3.png");
     bg5 = loadImage("../assets/bg5.jpg");
+    bg6 = loadImage("../assets/bg6.jpg");
     fall = loadImage("../assets/falling.gif");
+    warp = loadImage("../assets/warp.gif");
+    portal = loadImage("../assets/portal.gif");
     dragon_breath = loadImage("../assets/dragon_breath.gif");
     ending1bg = loadImage("../assets/ending_1.jpg");
 }
@@ -109,7 +119,124 @@ function draw(){
     if ( scene == 5 ){
         ending1Scene();
     }
+
+    if ( scene == 6){
+        ending2Scene();
+    }
     
+}
+
+function ending2Scene(){
+    if(!callofsilence_bgm.isPlaying()){
+        counter = 0;
+        playCallofSilence();
+    }
+
+    if(current == 0){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(pierre, 750, 200);
+        image(dragon, -75, 40);
+        text('There lies before them the being who started it all', 250, 555);
+        text('Pierre', 250, 605);
+    }
+
+    if(current == 1){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(pierre, 750, 200);
+        image(dragon, -75, 40);
+        image(pierre_face, 680, 250);
+        text('Well well well, props to you two', 250, 555);
+        text('for figuring out how to get out', 250, 580);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 2){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(pierre, 750, 200);
+        image(dragon, -75, 40);
+        image(player_face, 25, 425);
+        text('We\'ve had enough of your bull shyt!', 320, 555);
+        text('We want to get outta here! RIGHT NOW!', 320, 580);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 3){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(pierre, 750, 200);
+        image(dragon, -75, 40);
+        image(pierre_face, 680, 250);
+        text('Come now, hold your horses. You guys', 250, 555);
+        text('are actually the first people to figure', 250, 580);
+        text('out how to get out.', 250, 605);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 4){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(pierre, 750, 200);
+        image(dragon, -75, 40);
+        image(pierre_face, 680, 250);
+        text('That being said, I have a proposition', 250, 555);
+        text('for you guys. If you prove yourselves', 250, 580);
+        text('worthy I\'ll allow you two to rule over', 250, 605);
+        text('this world as gods.', 250, 630);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 5){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(pierre, 750, 200);
+        image(dragon, -75, 40);
+        image(pierre_face, 680, 250);
+        text('Whadya say? Sound fun right?', 250, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 6){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(pierre, 750, 200);
+        image(dragon, -75, 40);
+        image(dragon_face_2, 0, 425);
+        text('Do not be fooled by his trickery!', 415, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 7){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(pierre, 750, 200);
+        image(dragon, -75, 40);
+        image(pierre_face, 680, 250);
+        text('No tricks, no gimmicks.', 250, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 8){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(pierre, 750, 200);
+        image(dragon, -75, 40);
+        image(pierre_face, 680, 250);
+        text('Whadya say?', 250, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 9){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(pierre, 750, 200);
+        image(dragon, -75, 40);
+        clickable = false;
+        text('(a) choose to live like gods', 320, 555);
+        text('(b) choose to be resurrected', 320, 635);
+    }
 }
 
 function fifthScene(){
@@ -117,8 +244,8 @@ function fifthScene(){
     if(current == 0){
         playDragonBGM();
         text('You help out the dragon and release it from its seal.', 120, 530);
-        text('He streches his wings out immediately letting out a sigh', 120, 555);
-        text('of relief', 120, 580);
+        text('He streches his wings out immediately letting out a huge', 120, 555);
+        text('roar!', 120, 580);
         text('click to continue', 810, 725);
     }
 
@@ -139,50 +266,52 @@ function fifthScene(){
     }
 
     if(current == 3){
-        text('You jump on his head and he grabs the orb of life', 120, 540);
-        text('and he flys through the hole you fell from.', 120, 565);
+        text('You jump on his head and he grabs the orb of life. After grabbing', 120, 540);
+        text('the orb of life it seems that the orb of life increased his vitality.', 120, 565);
         text('click to continue', 810, 725);
     }
 
     if(current == 4){
+        image(dragon_face, 600, 400);
+        text('This thing is incredible! Simply holding it is', 120, 540);
+        text('giving me a power up. Sort of like mario\'s', 120, 565);
+        text('mushroom.', 120, 590);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 5){
         image(dragon_fly, 50, 0);
         image(player, 460, 350);
         text('click to continue', 810, 725);
     }
 
-    if(current == 5){
-        text('You continue flying violently through the hole', 120, 540);
-        text('until you see a bright light up above.', 120, 565);
+    if(current == 6){
+        text('The dragon flys up through the hole which you fell through.', 120, 540);
+        text('Very quickly you see a bright light at the top of the hole', 120, 565);
         text('click to continue', 810, 725);
     }
 
-    if(current == 6){
+    if(current == 7){
         text('You fly straight out of the hole and you have to cover your', 120, 540);
         text('eyes from the glare. You slowly open your eyes and you see', 120, 565);
         text('click to continue', 810, 725);
     }
 
-    if(current == 7){
+    if(current == 8){
         image(bg5, 0, -80);
+        image(player_face, 25, 425);
         if(dragon_bgm.isPlaying()){
             dragon_bgm.stop(); counter = 0;
             playCallofSilence();
-        }
-        text('OMG!! This view is amazing!', 120, 540);
-        text('click to continue', 810, 725);
-    }
-
-    if(current == 8){
-        image(bg5, 0, -80);
-        text('You look below and you see an amazing view of the world', 120, 540);
-        text('You see a desert on your left and to the far right you see the forest', 120, 565);
+        } else {playCallofSilence();}
+        text('OMG!! This view is amazing!', 320, 555);
         text('click to continue', 810, 725);
     }
 
     if(current == 9){
         image(bg5, 0, -80);
-        text('The dragon then procceds to fly towards the forest and tells you to', 120, 540);
-        text('keep an eye out for the shadow monster.', 120, 565);
+        text('You look below and you see an amazing view of the world', 120, 540);
+        text('You see a desert on your left and to the far right you see the forest', 120, 565);
         text('click to continue', 810, 725);
     }
 
@@ -191,6 +320,100 @@ function fifthScene(){
         text('The dragon then procceds to fly towards the forest and tells you to', 120, 540);
         text('keep an eye out for the shadow monster.', 120, 565);
         text('click to continue', 810, 725);
+    }
+
+    if(current == 11){
+        image(bg6, 0, -80);
+        text('As the dragon flys over the forest you scan the area looking for the shadow', 120, 550);
+        text('monster. Both of you searched for hours until you managed to catch a', 120, 575);
+        text('glimpse of the the shadow\'s flicker from the corner of your eye.', 120, 600);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 12){
+        image(bg6, 0, -80);
+        image(player_face, 25, 425);
+        text('LOOK!! He\'s over there!', 320, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 13){
+        image(bg6, 0, -80);
+        text('The dragon lets out a huge roar and attacks the shadow monster.', 120, 550);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 14){
+        image(bg6, 0, -80);
+        image(dragon_face, 600, 400);
+        text('Boro Buresu!!', 120, 600);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 15){
+        image(bg6, 0, -80);
+        text('The dragon releases a huge heat breath immediately incenerating the shadow', 120, 550);
+        text('monster as well as the surrounding area.', 120, 575);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 16){
+        image(bg6, 0, -80);
+        text('The dragon then grabs the cube of death into its other hand', 120, 550);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 17){
+        image(bg6, 0, -80);
+        image(dragon_face, 600, 400);
+        text('AAAAAAHHHH!!!! WHAT IS THIS THING!!??!', 120, 550);
+        text('THIS ACCURSED CUBE IS OBSORBING', 120, 575);
+        text('MY VITALITY!!', 120, 600);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 18){
+        image(bg6, 0, -80);
+        image(dragon_face, 600, 400);
+        text('If it wasn\'t for the cube of life restoring', 120, 550);
+        text('my vitality. Id\'ve been a goner.', 120, 575);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 19){
+        image(bg6, 0, -80);
+        image(dragon_face, 600, 400);
+        text('Okay now lets merge them togther and create the', 120, 550);
+        text('portal!! PIERRE!!! I\'M COMING FOR YOU', 120, 575);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 20){
+        image(bg6, 0, -80);
+        text('The dragon smacks the cube of death and the orb of life', 120, 550);
+        text('into each other. A huge explosion occurs and a portal', 120, 575);
+        text('tears open at the merging of the cube and the orb', 120, 600);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 21){
+        image(dragon_face, 600, 400);
+        image(portal, 390, 150);
+        text('Look! The portal is open! Quickly!!', 120, 550);
+        text('Lets traverse through it', 120, 575);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 22){
+        image(warp, 200, 150);
+        text('They traversed through the portal and on the other side', 120, 550);
+        text('they found themselves at the start. Where it all began.', 120, 575);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 23){
+        current = 0;
+        scene = 6;
     }
 }
 
@@ -476,9 +699,10 @@ function fourthScene(){
         image(bg4_2, 0, -50);
         image(player, 150, 371);
         image(dragon_face, 600, 400);
-        text('As soon as I found the orb of life I', 120, 540);
+        text('But as soon as I found the orb of life I', 120, 540);
         text('immediately got trapped in this ice.', 120, 565);
         text('I\'ve been gaurding this place ever since.', 120, 590);
+        text('That\'s actually the reason why I attacked you.', 120, 615);
         text('click to continue', 810, 725);
     }
 
@@ -622,7 +846,7 @@ function thirdScene(){
         image(player, 200, 350);
         clickable = false;
         text('When you decide to take the cube of death from the shadow your', 120, 530);
-        text('soul ends up getting engulfed in the shadows of death.', 120, 555);
+        text('soul ends up getting engulfed in the cube of death.', 120, 555);
         text('You died.', 120, 605);
         text('press \'r\' to restart the game', 810, 725);
     }
