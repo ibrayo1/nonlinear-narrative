@@ -1497,6 +1497,9 @@ function keyPressed(){
         if(dragon_bgm.isPlaying()){
             dragon_bgm.stop();
         }
+        if(callofsilence_bgm.isPlaying()){
+            callofsilence_bgm.stop();
+        }
     }
 }
 
