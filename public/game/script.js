@@ -3,7 +3,7 @@ let cnv;
 let clickable = true;
 
 // variable stores which scene player is at
-let scene = 0;
+let scene = 4;
 let current = 0;
 
 // characters
@@ -13,12 +13,14 @@ let player;
 let player_face;
 let shadow;
 let dragon_face;
+let dragon_fly;
 
 // sound effects
 let bruh_sfx;
 let forest_bgm;
 let haunted_forest_bgm;
 let dragon_bgm;
+let callofsilence_bgm;
 let counter = 0;
 
 // images
@@ -27,6 +29,8 @@ let bg2;
 let bg3;
 let bg4;
 let bg4_2;
+let bg4_3;
+let bg5;
 let ending1bg;
 let dragon_breath;
 let fall;
@@ -37,6 +41,7 @@ function preload(){
     forest_bgm = loadSound("../assets/forest_bgm.mp3");
     haunted_forest_bgm = loadSound("../assets/haunted_forest_bgm.mp3");
     dragon_bgm = loadSound("../assets/dragon_bgm.mp3");
+    callofsilence_bgm = loadSound("../assets/callofsilence.mp3");
 
     // player
     player = loadImage("../assets/slime.png");
@@ -51,6 +56,7 @@ function preload(){
 
     //dragon
     dragon_face = loadImage("../assets/dragon_face.png");
+    dragon_fly = loadImage("../assets/dragon_fly.png");
 
     // bg 1
     bg1 = loadImage("../assets/bg1.jpg");
@@ -58,6 +64,8 @@ function preload(){
     bg3 = loadImage("../assets/bg3.jpg");
     bg4 = loadImage("../assets/bg4.jpg");
     bg4_2 = loadImage("../assets/bg4-2.png");
+    bg4_3 = loadImage("../assets/bg4-3.png");
+    bg5 = loadImage("../assets/bg5.jpg");
     fall = loadImage("../assets/falling.gif");
     dragon_breath = loadImage("../assets/dragon_breath.gif");
     ending1bg = loadImage("../assets/ending_1.jpg");
@@ -70,6 +78,7 @@ function setup(){
     forest_bgm.setVolume(0.2);
     haunted_forest_bgm.setVolume(0.2);
     dragon_bgm.setVolume(0.2);
+    callofsilence_bgm.setVolume(0.4);
 }
 
 function draw(){
@@ -104,9 +113,83 @@ function draw(){
 }
 
 function fifthScene(){
+    
     if(current == 0){
-        text('You got knocked out when your head hits the hard ground.', 120, 530);
-        text('After an amount of time you find yourself slowly waking up.', 120, 555);
+        playDragonBGM();
+        text('You help out the dragon and release it from its seal.', 120, 530);
+        text('He streches his wings out immediately letting out a sigh', 120, 555);
+        text('of relief', 120, 580);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 1){
+        image(bg4_3, 0, -50);
+        image(player, 200, 371);
+        image(dragon_face, 600, 400);
+        text('Thank you so much for freeing me', 120, 540);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 2){
+        image(bg4_3, 0, -50);
+        image(player, 200, 371);
+        image(dragon_face, 600, 400);
+        text('Now lets get out of here', 120, 540);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 3){
+        text('You jump on his head and he grabs the orb of life', 120, 540);
+        text('and he flys through the hole you fell from.', 120, 565);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 4){
+        image(dragon_fly, 50, 0);
+        image(player, 460, 350);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 5){
+        text('You continue flying violently through the hole', 120, 540);
+        text('until you see a bright light up above.', 120, 565);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 6){
+        text('You fly straight out of the hole and you have to cover your', 120, 540);
+        text('eyes from the glare. You slowly open your eyes and you see', 120, 565);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 7){
+        image(bg5, 0, -80);
+        if(dragon_bgm.isPlaying()){
+            dragon_bgm.stop(); counter = 0;
+            playCallofSilence();
+        }
+        text('OMG!! This view is amazing!', 120, 540);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 8){
+        image(bg5, 0, -80);
+        text('You look below and you see an amazing view of the world', 120, 540);
+        text('You see a desert on your left and to the far right you see the forest', 120, 565);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 9){
+        image(bg5, 0, -80);
+        text('The dragon then procceds to fly towards the forest and tells you to', 120, 540);
+        text('keep an eye out for the shadow monster.', 120, 565);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 10){
+        image(bg5, 0, -80);
+        text('The dragon then procceds to fly towards the forest and tells you to', 120, 540);
+        text('keep an eye out for the shadow monster.', 120, 565);
         text('click to continue', 810, 725);
     }
 }
@@ -394,7 +477,7 @@ function fourthScene(){
         image(player, 150, 371);
         image(dragon_face, 600, 400);
         text('As soon as I found the orb of life I', 120, 540);
-        text('immediately was entrapped in this ice.', 120, 565);
+        text('immediately got trapped in this ice.', 120, 565);
         text('I\'ve been gaurding this place ever since.', 120, 590);
         text('click to continue', 810, 725);
     }
@@ -421,6 +504,7 @@ function fourthScene(){
         scene = 4;
         current = 0;
         counter = 0;
+        clickable = true;
         haunted_forest_bgm.stop();
     }
 
@@ -850,9 +934,9 @@ function mouseClicked(){
     }
 }
 
-function playHauntedForestBGM(){
+function playCallofSilence(){
     if(counter == 0){
-        haunted_forest_bgm.play();
+        callofsilence_bgm.play();
         counter++;
     }
 }
