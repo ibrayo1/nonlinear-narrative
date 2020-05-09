@@ -12,6 +12,7 @@ let pierre_face;
 let player;
 let player_face;
 let shadow;
+let dragon_face;
 
 // sound effects
 let bruh_sfx;
@@ -47,6 +48,9 @@ function preload(){
 
     //shadow
     shadow = loadImage("../assets/shadow.gif");
+
+    //dragon
+    dragon_face = loadImage("../assets/dragon_face.png");
 
     // bg 1
     bg1 = loadImage("../assets/bg1.jpg");
@@ -89,8 +93,21 @@ function draw(){
         fourthScene();
     } 
 
+    if ( scene == 4 ){
+        fifthScene();
+    }
+
     if ( scene == 5 ){
         ending1Scene();
+    }
+    
+}
+
+function fifthScene(){
+    if(current == 0){
+        text('You got knocked out when your head hits the hard ground.', 120, 530);
+        text('After an amount of time you find yourself slowly waking up.', 120, 555);
+        text('click to continue', 810, 725);
     }
 }
 
@@ -127,7 +144,7 @@ function fourthScene(){
         playDragonBGM();
         image(bg4, 0, -50);
         image(player, 200, 371);
-        text('You find yourself wakup to -HOLY *&@Y#!!!!!', 120, 540);
+        text('You find yourself waking up to -- HOLY *&@Y#!!!!!', 120, 540);
         text('IS THAT A DRAGON?!?!, WHAT IS THIS SHYT?', 120, 565);
         text('THAT TIME I GOT REINCARNATED AS A SLIME?!?!!!', 120, 590);
         text('click to continue', 810, 725);
@@ -143,19 +160,289 @@ function fourthScene(){
     if(current == 3){
         image(bg4_2, 0, -50);
         image(player, 150, 371);
+        image(dragon_face, 600, 400);
         text('...', 120, 540);
         text('click to continue', 810, 725);
     }
 
     if(current == 4){
-        clickable = false;
         image(bg4_2, 0, -50);
         image(dragon_breath, 50, 50);
         image(player, 150, 371);
-        text('AAAAHH!', 120, 540);
+        text('AAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHH!', 120, 540);
         text('click to continue', 810, 725);
     }
 
+    if(current == 5){
+        image(bg4_2, 0, -50);
+        image(dragon_breath, 50, 50);
+        image(player, 150, 371);
+        text('OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!', 120, 540);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 6){
+        image(bg4_2, 0, -50);
+        image(dragon_breath, 50, 50);
+        image(player, 150, 371);
+        text('EEEEEEEEEEEEEHHHHHHHHHHHHHHHHHHHHHH', 120, 540);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 7){
+        if(dragon_bgm.isPlaying()){
+            dragon_bgm.stop(); counter=0;
+            playHauntedForestBGM();
+        }
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(dragon_face, 600, 400);
+        text('Wait hold up. How come you aint dying?!?', 120, 540);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 8){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(player_face, 25, 425);
+        text('Uh... your right, I guess it might be because im', 320, 555);
+        text('already dead.', 320, 580);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 9){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(dragon_face, 600, 400);
+        text('Wait hol up. You\'re dead too?', 120, 540);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 10){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(player_face, 25, 425);
+        text('Yes sir, that is correct. You too?', 320, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 11){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(dragon_face, 600, 400);
+        text('Then you must have been sent by pierre as well.', 120, 540);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 12){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(player_face, 25, 425);
+        text('Huh? how\'d you know?', 320, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 13){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(dragon_face, 600, 400);
+        text('Many many years ago, like im talkin', 120, 540);
+        text('centuries. I too was sent by pierre to', 120, 565);
+        text('these woods', 120, 590);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 14){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(dragon_face, 600, 400);
+        text('After so many years traversing through', 120, 540);
+        text('this accursed place I found out that you', 120, 565);
+        text('need two items to get outta this place.', 120, 590);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 15){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(dragon_face, 600, 400);
+        text('The first is the cube of death-', 120, 540);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 16){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(player_face, 25, 425);
+        text('SERIOUSLY?!?! Bruh, I should\'ve taken that thing!!', 320, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 17){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(dragon_face, 600, 400);
+        text('OKAY DAAAMN BRO. LIKE, CAN A DRAGON', 120, 540);
+        text('FINISH HIS STORY?!', 120, 565)
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 18){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(player_face, 25, 425);
+        text('O my bad bro. Please continue.', 320, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 19){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(dragon_face, 600, 400);
+        text('Thank you. Gaawd. So as I was sayin-', 120, 540);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 20){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(dragon_face, 600, 400);
+        text('Wait hold up did you say the cube of death?', 120, 540);
+        text('Are you saying you found the cube of death?!?', 120, 565);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 21){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(player_face, 25, 425);
+        text('Yeah I saw a shadow monster carrying it around.', 320, 555);
+        text('It offered to give it to me. But I decided not to', 320, 580);
+        text('take it.', 320, 605);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 22){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(dragon_face, 600, 400);
+        text('You idiot you need that item to get out', 120, 540);
+        text('of the forest!!', 120, 565);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 23){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(player_face, 25, 425);
+        text('WELL HOW AM I SUPPOSE TO KNOW!!!', 320, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 24){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(dragon_face, 600, 400);
+        text('BRUH! -_- ', 120, 540);
+        text('click to continue', 810, 725);
+    }
+    
+    if(current == 25){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(dragon_face, 600, 400);
+        text('Don\'t you think an item that LOOKS', 120, 540);
+        text('important, is ACTUALLY important!!!', 120, 565);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 26){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(dragon_face, 600, 400);
+        text('Fine whatever, okay long story short.', 120, 540);
+        text('You need the cube of death and you', 120, 565);
+        text('also need the orb of life', 120, 590);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 27){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(dragon_face, 600, 400);
+        text('You see that thing over on the left?', 120, 540);
+        text('That is called the orb of life. I', 120, 565);
+        text('managed to find it while wandering', 120, 590);
+        text('this accursed place for eons.', 120, 615);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 28){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(dragon_face, 600, 400);
+        text('Only by combining the orb of life and', 120, 540);
+        text('the cube of death can you create the portal', 120, 565);
+        text('that leads to the place where pierre is. Once', 120, 590);
+        text('you get to pierre, you\'ve won his sick twisted', 120, 615);
+        text('game.', 120, 640);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 29){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(dragon_face, 600, 400);
+        text('As soon as I found the orb of life I', 120, 540);
+        text('immediately was entrapped in this ice.', 120, 565);
+        text('I\'ve been gaurding this place ever since.', 120, 590);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 30){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        image(dragon_face, 600, 400);
+        text('Now, please help me! We can work together', 120, 540);
+        text('and find the cube of death. Then escape', 120, 565);
+        text('this vile place once and for all.', 120, 590);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 31){
+        image(bg4_2, 0, -50);
+        image(player, 150, 371);
+        clickable = false;
+        text('(a) help the poor sod', 320, 540);
+        text('(b) Take the orb of life and run', 320, 610);
+    }
+
+    if(current == 32){
+        scene = 4;
+        current = 0;
+        counter = 0;
+        haunted_forest_bgm.stop();
+    }
+
+    if(current == 33){
+        if(clickable){
+            scene = 6;
+            current = 0;
+            counter = 0;
+            haunted_forest_bgm.stop();
+        }  else{
+            image(bg4_2, 0, -50);
+            image(player, 150, 371);
+            text('Okay seriously, stop being such a wuss', 320, 540);
+            text('you\'re seriously gonna just take that thing', 320, 565);
+            text('and run?', 320, 590);
+            text('press \'a\'', 810, 725);
+        }
+    }
+
+    if(current == 34){
+        current = 31;
+    }
 }
 
 function thirdScene(){
@@ -250,9 +537,9 @@ function thirdScene(){
         image(bg3, 0, -225);
         image(player, 200, 350);
         clickable = false;
-        text('When you decide to take cube of death from the shadow your soul ends', 120, 530);
-        text('up getting engulfed in the shadows of death.', 120, 555);
-        text('You died.', 120, 580);
+        text('When you decide to take the cube of death from the shadow your', 120, 530);
+        text('soul ends up getting engulfed in the shadows of death.', 120, 555);
+        text('You died.', 120, 605);
         text('press \'r\' to restart the game', 810, 725);
     }
 
