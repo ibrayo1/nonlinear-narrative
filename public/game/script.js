@@ -3,7 +3,7 @@ let cnv;
 let clickable = true;
 
 // variable stores which scene player is at
-let scene = 4;
+let scene = 0;
 let current = 0;
 
 // characters
