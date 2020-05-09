@@ -10,6 +10,8 @@ let current = 0;
 let pierre;
 let pierre_face;
 let player;
+let god_player;
+let god_player_face;
 let player_face;
 let shadow;
 let dragon;
@@ -39,6 +41,10 @@ let portal;
 let dragon_breath;
 let fall;
 let warp;
+let octopunch;
+let yasakani;
+let heat_blast;
+let darkfog;
 
 function preload(){
     // sound effect
@@ -51,6 +57,8 @@ function preload(){
     // player
     player = loadImage("../assets/slime.png");
     player_face = loadImage("../assets/slime_face.png");
+    god_player = loadImage("../assets/slime-2.png");
+    god_player_face = loadImage("../assets/slime_face_2.png");
     
     // pierre
     pierre = loadImage("../assets/pierre.gif");
@@ -79,6 +87,10 @@ function preload(){
     portal = loadImage("../assets/portal.gif");
     dragon_breath = loadImage("../assets/dragon_breath.gif");
     ending1bg = loadImage("../assets/ending_1.jpg");
+    heat_blast = loadImage("../assets/heat_breath.gif");
+    yasakani = loadImage("../assets/yasakani.gif");
+    octopunch = loadImage("../assets/fist-enrage.gif");
+    darkfog = loadImage("../assets/darkfog.gif");
 }
 
 function setup(){
@@ -123,7 +135,304 @@ function draw(){
     if ( scene == 6){
         ending2Scene();
     }
+
+    if ( scene == 7 ){
+        fightScene();
+    }
     
+}
+
+function fightScene(){
+    if(!callofsilence_bgm.isPlaying()){
+        counter = 0;
+        playCallofSilence();
+    }
+
+    if(current == 0){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(pierre, 750, 200);
+        image(dragon, -75, 40);
+        image(pierre_face, 680, 250);
+        text('Good! That was a really good choice.', 250, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 1){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(pierre, 750, 200);
+        image(dragon, -75, 40);
+        image(pierre_face, 680, 250);
+        text('Now you must fight me for it', 250, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 2){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(pierre, 750, 200);
+        image(dragon, -75, 40);
+        image(player_face, 25, 425);
+        text('WHAT!?! I THOUGHT YOU SAID NO TRICKS', 320, 555);
+        text('click to continue', 810, 725);
+    }
+    
+    if(current == 3){
+        image(bg1, -100, -200);
+        image(player, 500, 300); //image(god_player, 420, 218);
+        image(pierre, 750, 200);
+        image(dragon, -75, 40);
+        image(pierre_face, 680, 250);
+        text('I mean tbh. You should know me by now.', 250, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 4){
+        text('And so you and the dragon fight against pierre. You guys', 230, 555);
+        text('fought for three days and three nights with neither side', 230, 580);
+        text('getting one over the other', 230, 605);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 5){
+        image(heat_blast, 150, -10);
+        image(dragon_face_2, 0, 425);
+        text('HEAT BREATH!', 415, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 6){
+        image(yasakani, 110, 100);
+        image(pierre_face, 680, 250);
+        text('YASAKANI NO MAGATAMA!', 250, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 7){
+        image(player_face, 25, 425);
+        image(octopunch, 150, 200);
+        text('OCTOPUNCH!', 320, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 8){
+        image(player_face, 25, 425);
+        text('wait how am I doing this?', 320, 555);
+        text('I ain\'t got no arms', 320, 580);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 9){
+        image(yasakani, 110, 100);
+        image(pierre_face, 680, 250);
+        text('YASAKANI NO MAGATAMA!', 250, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 10){
+        image(dragon_face_2, 0, 425);
+        text('DAMN! WE\'RE GONNA LOSE AT THIS RATE', 415, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 11){
+        image(player_face, 25, 425);
+        text('Wait I have an idea! Distract him for me', 320, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 12){
+        image(dragon_face_2, 0, 425);
+        text('OKAY I\'LL TRY MY BEST', 415, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 13){
+        image(darkfog, 250, 150);
+        image(dragon_face_2, 0, 425);
+        text('DARK FOG!', 415, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 14){
+        image(pierre_face, 680, 250);
+        text('DAMN THE LIGHTNING BLINDED ME!', 250, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 15){
+        image(player_face, 25, 425);
+        text('HERE GOES NOTHING', 320, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 16){
+        text('You threw the cube of death towards pierre.', 200, 555);
+        text('It hit him square in the chest and the cube begins to', 200, 580);
+        text('suck his vitality out of him', 200, 605);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 17){
+        image(pierre_face, 680, 250);
+        text('AAAAAAAAAAAAAAAHHHHHHHHHHH!', 250, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 18){
+        image(pierre_face, 680, 250);
+        text('DO YOU THINK THATS ENOUGH', 250, 555);
+        text('TO STOP ME?!?', 250, 580);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 19){
+        image(player_face, 25, 425);
+        text('NOW!', 320, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 20){
+        image(heat_blast, 150, -10);
+        image(dragon_face_2, 0, 425);
+        text('HEAT BREATH!', 415, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 21){
+        image(player_face, 25, 425);
+        image(octopunch, 150, 200);
+        text('OCTOPUNCH!', 320, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 22){
+        image(pierre_face, 680, 250);
+        text('AAAAAAAAAAAAAAAHHHHHHHHHHH!', 250, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 23){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(dragon, -75, 40);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 24){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(dragon, -75, 40);
+        image(dragon_face_2, 0, 425);
+        text('Is it done? Is it finally over?', 415, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 25){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(dragon, -75, 40);
+        image(player_face, 25, 425);
+        text('Yeah, I think so. He\'s finally been defeated', 320, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 26){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(dragon, -75, 40);
+        text('Suddenly, you feel a strange power start to swell inside you', 200, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 27){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(dragon, -75, 40);
+        image(player_face, 25, 425);
+        text('UGH!!', 320, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 28){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(dragon, -75, 40);
+        image(dragon_face_2, 0, 425);
+        text('Whats wrong? You good?', 415, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 29){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(dragon, -75, 40);
+        image(player_face, 25, 425);
+        text('AAAAAAAAAAAAHHHHHH!!', 320, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 30){
+        image(player_face, 25, 425);
+        text('AAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHH!!', 320, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 31){
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 32){
+        image(bg1, -100, -200);
+        image(god_player, 500, 265);
+        image(dragon, -75, 40);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 33){
+        image(bg1, -100, -200);
+        image(god_player, 500, 265);
+        image(dragon, -75, 40);
+        image(dragon_face_2, 0, 425);
+        text('Woah, what happened?', 415, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 34){
+        image(bg1, -100, -200);
+        image(god_player, 500, 265);
+        image(dragon, -75, 40);
+        image(god_player_face, -10, 360);
+        text('I think I just ascended into a god', 320, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 35){
+        image(bg1, -100, -200);
+        image(god_player, 500, 265);
+        image(dragon, -75, 40);
+        image(dragon_face_2, 0, 425);
+        text('SWEEEEEEEEETTTTT', 415, 555);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 36){
+        image(bg1, -100, -200);
+        image(god_player, 500, 265);
+        image(dragon, -75, 40);
+        text('And so, you and the dragon ruled over this world as', 200, 555);
+        text('all-powerful gods.', 200, 580);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 37){
+        clickable = false;
+        text('Congratz. You beat the game and become a god.', 200, 555);
+        text('Thanks so much for playing. Try playing again', 200, 580);
+        text('with different choices and unlock different endings.', 200, 605);
+        text('press \'r\' to restart', 810, 725);
+    }
 }
 
 function ending2Scene(){
@@ -237,6 +546,45 @@ function ending2Scene(){
         text('(a) choose to live like gods', 320, 555);
         text('(b) choose to be resurrected', 320, 635);
     }
+
+    if(current == 10){
+        current = 0;
+        scene = 7;
+        clickable = true;
+    }
+
+    if(current == 11){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(pierre, 750, 200);
+        image(dragon, -75, 40);
+        image(pierre_face, 680, 250);
+        clickable = true;
+        text('Seriously?!? Alright fine', 250, 555);
+        text('go the sucky route.', 250, 580);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 12){
+        image(bg1, -100, -200);
+        image(player, 500, 300);
+        image(pierre, 750, 200);
+        image(dragon, -75, 40);
+        text('Your soul and the dragon\'s soul dissipate. It', 250, 555);
+        text('doesn\'t feel bad at all, rather it feels calm.', 250, 580);
+        text('The next thing you hear is the crying of a baby.', 250, 605);
+        text('You have been reborn.', 250, 630);
+        text('click to continue', 810, 725);
+    }
+
+    if(current == 13){
+        clickable = false
+        text('Congratulations for finishing the game. You\'ve been', 250, 555);
+        text('reborn and will get a chance to live a new life.', 250, 580);
+        text('I can\'t believe you actually didn\'t choose to become', 250, 605);
+        text('a god. But to each his own... wuss', 250, 630);
+        text('press \'r\' to restart', 810, 725);
+    }
 }
 
 function fifthScene(){
@@ -346,7 +694,7 @@ function fifthScene(){
     if(current == 14){
         image(bg6, 0, -80);
         image(dragon_face, 600, 400);
-        text('Boro Buresu!!', 120, 600);
+        text('HEAT BREATH!!', 120, 600);
         text('click to continue', 810, 725);
     }
 
@@ -860,7 +1208,7 @@ function thirdScene(){
     }
 
     if(current == 12){
-        image(fall, 250, 100);
+        image(fall, 270, 100);
         clickable = true;
         text('You turn around and begin to run towards the place you entered the', 120, 530);
         text('forest from. As you run, you end up taking the wrong step and end', 120, 555);
